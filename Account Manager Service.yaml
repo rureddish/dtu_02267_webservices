@@ -1,0 +1,56 @@
+openapi: "3.0.3"
+info:
+  title: AccountManagerService
+  description: Account Manager Service inside DTU Pay
+  version: "1.0.0"
+servers:
+  - url: "https://dtu_pay_new_new"
+paths:
+  /customers:
+    get:
+      summary: "GET customers"
+      responses:
+        "200":
+          description: "OK"
+    post:
+      summary: "POST customers"
+      responses:
+        "200":
+          description: "OK"
+  /customers/{id}:
+    get:
+      summary: "GET customers/{id}"
+      parameters:
+        - name: "id"
+          in: "path"
+      responses:
+        "200":
+          description: "OK"
+    put:
+      summary: "PUT customers/{id}"
+      parameters:
+        - name: "id"
+          in: "path"
+      responses:
+        "200":
+          description: "OK"
+    delete:
+      summary: "DELETE customers/{id}"
+      parameters:
+        - name: "id"
+          in: "path"
+      responses:
+        "200":
+          description: "OK"
+  /merchants:
+    get:
+      summary: "GET merchants"
+      responses:
+        "200":
+          description: "OK"
+    post:
+      summary: "POST merchants"
+      responses:
+        "200":
+          description: "OK"
+  

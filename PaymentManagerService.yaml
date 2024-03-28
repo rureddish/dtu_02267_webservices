@@ -1,0 +1,30 @@
+openapi: 3.0.3
+info:
+  title: PaymentManagerService
+  description: Internal Payment Manager Service to get Reports
+  version: 1.0.0
+paths:
+  /payments:
+    get:
+      summary: "GET payments"
+      responses:
+        "200":
+          description: "OK"
+  /payments/customer/{id}:
+    get:
+      summary: "GET payments/customer/{id}"
+      parameters:
+        - name: "id"
+          in: "path"
+      responses:
+        "200":
+          description: "OK"
+  /payments/merchant/{id}:
+    get:
+      summary: "GET payments/merchant/{id}"
+      parameters:
+        - name: "id"
+          in: "path"
+      responses:
+        "200":
+          description: "OK"

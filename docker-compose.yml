@@ -1,0 +1,27 @@
+version: '3'
+services:
+  rabbitMq:
+    image: rabbitmq:3-management
+    
+  account-manager-ms:
+    build: ./AccountManagerMs
+    depends_on:
+      - "rabbitMq"
+
+  token-manager-ms:
+    build: ./TokenManagerMs
+    depends_on:
+      - "rabbitMq"
+    
+  payment-manager-ms:
+    build: ./PaymentManagerMs
+    depends_on:
+      - "rabbitMq"
+
+  dtu-pay-ms:
+    build: ./DtuPayMs
+    ports:
+      - "8084:8080"
+    depends_on:
+      - "rabbitMq"
+ 

@@ -1,0 +1,125 @@
+openapi: 3.0.3
+info:
+  title: DTU Pay
+  description: Access from Client, Merchant and Manager
+  version: 1.0.0
+servers:
+  - url: 'http://localhost:8084/'
+tags:
+  - name: Customer
+    description: Everything accesible from CustomerAPI
+  - name: Merchant
+    description: Everything accesible from MerchantAPI
+  - name: Manager
+    description: Everything accesible from ManagerAPI
+paths:
+    /customerAPI/customers:
+       post:
+         summary: "Register a new customer in DTU pay"
+         responses:
+           "200":
+             description: "OK"
+         tags:
+           - Customer
+    /customerAPI/customers/{id}:
+      get:
+        summary: "A customer can retrieve his own information from DTU pay"
+        parameters:
+          - name: "id"
+            in: "path"
+        responses:
+          "200":
+            description: "OK"
+        tags:
+          - Customer
+      put:
+        summary: "Update customer's information"
+        parameters:
+          - name: "id"
+            in: "path"
+        responses:
+          "200":
+            description: "OK"
+        tags:
+          - Customer
+      delete:
+        summary: "A customer can deregister from DTU pay"
+        parameters:
+          - name: "id"
+            in: "path"
+        responses:
+          "200":
+            description: "OK"
+        tags:
+          - Customer
+    /customerAPI/payments/{id}:
+      get:
+        summary: "Get a report with a customer's payments in DTU Pay"
+        parameters:
+          - name: "id"
+            in: "path"
+        responses:
+          "200":
+            description: "OK"
+        tags:
+        - Customer
+    /customerAPI/tokens:
+      post:
+        summary: "Create tokens for use with DTU Pay"
+        responses:
+          "200":
+            description: "OK"
+          "403":
+            description: "Customer cannot request tokens when they have more than 1 or total will be more than 6."
+        tags:
+          - Customer
+    /managerAPI/payments:
+      get:
+        summary: "Get a list of all payments in DTU pay"
+        responses:
+          "200":
+            description: "OK"
+        tags:
+          - Manager
+    /merchantAPI/merchants:
+      post:
+        summary: "Register a new Merchant in DTU pay"
+        responses:
+          "200":
+            description: "OK"
+        tags:
+          - Merchant
+    /merchantAPI/payments:
+      post:
+        summary: "Pay - Merchant initiates a payment in DTU Pay"
+        responses:
+          "200":
+            description: "OK"
+          "400":
+            description: "Payment failed at the bank side. Bank related details are not correct."
+          "401":
+            description: "Customer's token is not registered with DTU pay"
+        tags:
+          - Merchant
+    /merchantAPI/payments/{id}:
+      get:
+        summary: "A merchant can get a report with all his payments"
+        parameters:
+          - name: "id"
+            in: "path"
+        responses:
+          "200":
+            description: "OK"
+        tags:
+          - Merchant
+components:
+  schemas:
+    Customer:
+    AccountID:
+    TokenRequest:
+    TokenList:
+    ListCustomerPaymentView:
+    Merchant:
+    ListMerchantPaymentView:
+    ListManagerPaymentView:
+
